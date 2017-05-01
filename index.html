@@ -1,0 +1,184 @@
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<style>
+    html {
+        width: 100%;
+        overflow-x: hidden;
+        background-color: aliceblue;
+    }
+    
+    body {
+        padding: 0px;
+        margin: 0px;
+    }
+    
+    @font-face {
+        font-family: DeathKnell;
+        src: url('Death Knell.otf');
+    }
+    
+    h1 {
+        font-family: DeathKnell;
+        font-size: 13rem;
+    }
+    
+    #header {
+        background-image: url("img/miami80sBG2.jpg");
+        background-size: contain;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 20em;
+        max-height: 252px;
+    }
+    
+    #container {
+        position: relative;
+        height: 100%;
+    }
+    
+    #center-img {
+        left: 30%;
+        top: 50%;
+        position: absolute;
+        z-index: 10;
+        background-image: url("img/crockett_indiv.png");
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        width: 100em;
+        height: 200em;
+        shape-outside: url('img/crockett_indiv.png');
+        shape-image-threshold: 0.5;
+        float: left;
+    }
+    
+    #horizDiv {
+        width: 100%;
+        height: 20em;
+        z-index: 4;
+        position: fixed;
+        background-color: pink;
+    }
+    
+    #horizDiv h1 {
+        margin: 0px;
+        transition: all .5s ease;
+        transform: translateX(-100%);
+    }
+    
+    .slide-in {
+        transform: translateX(0%);
+        -webkit-transform: translateX(0%);
+    }
+    
+    .slide-out {
+        transform: translateX(100%);
+        -webkit-transform: translateX(100%);
+    }
+    
+    @keyframes slide {
+        0% {
+            transform: translateX(-100%);
+            -webkit-transform: translateX(-100%);
+        }
+        100% {
+            transform: translateX(0%);
+            -webkit-transform: translateX(0%);
+        }
+    }
+    
+    .slide-animate {
+        animation: slide 1s;
+    }
+    
+    .bodySection {
+        width: 100%;
+        position: relative;
+        min-height: 70em;
+    }
+    
+    #bodyContainer {
+        position: absolute;
+        margin-top: 35em;
+        width: 50%;
+        margin-left: 15px;
+    }
+</style>
+
+<body>
+    <div id="container">
+        <div id="header"></div>
+
+        <div id="center-img"></div>
+        <div id="horizDiv">
+            <h1>Introduction</h1>
+        </div>
+
+        <div id="bodyContainer">
+            <div class="bodySection" id="About Me">
+                About
+                <br> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque non dui dolor. Vestibulum vitae
+                rhoncus purus, vitae rhoncus diam. Nulla id elit eu nulla faucibus pharetra ac vulputate nunc. Vestibulum
+                in gravida justo. Proin id auctor purus. In at ante libero. Fusce faucibus, mauris congue ornare blandit,
+                erat magna pulvinar elit, sit amet auctor lorem ligula in nisl. In sed consequat mauris, in maximus turpis.
+            </div>
+            <div class="bodySection" id="Contact">
+                Contact
+                <br> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque non dui dolor. Vestibulum vitae
+                rhoncus purus, vitae rhoncus diam. Nulla id elit eu nulla faucibus pharetra ac vulputate nunc. Vestibulum
+                in gravida justo. Proin id auctor purus. In at ante libero. Fusce faucibus, mauris congue ornare blandit,
+                erat magna pulvinar elit, sit amet auctor lorem ligula in nisl. In sed consequat mauris, in maximus turpis.
+            </div>
+            <div class="bodySection" id="Skills">
+                Skills
+                <br> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque non dui dolor. Vestibulum vitae
+                rhoncus purus, vitae rhoncus diam. Nulla id elit eu nulla faucibus pharetra ac vulputate nunc. Vestibulum
+                in gravida justo. Proin id auctor purus. In at ante libero. Fusce faucibus, mauris congue ornare blandit,
+                erat magna pulvinar elit, sit amet auctor lorem ligula in nisl. In sed consequat mauris, in maximus turpis.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var scrollY = window.scrollY;
+        console.log(scrollY)
+        $titleDiv = $('#horizDiv').children('h1');
+        $bodySections = $('#bodyContainer').children('div');
+        $($titleDiv.get(0)).css({
+            'transform': 'translateX(0%)'
+        });
+        console.log($titleDiv.get(0).innerHTML);
+
+        var currSection = $titleDiv.get(0).id;
+
+        window.onscroll = function () {
+
+            scrollY = document.body.scrollTop;
+
+            for (var i = 0; i < $bodySections.length; i++) {
+                section = $($bodySections[i]).get(0).id;
+                if (scrollY > $($bodySections[i]).position().top + 500) {
+                    if (currSection != section) {
+                        $titleDiv.get(0).innerHTML = $bodySections.get(i).id;
+                        $($titleDiv.get(0)).addClass('slide-animate');
+                        setTimeout(2000);
+                        $($titleDiv.get(0)).removeClass('slide-animate');
+                        $($titleDiv.get(0)).css({
+                            'transform': 'initial'
+                        });
+                    }
+                }
+            }
+            if (scrollY < 500) {
+                $titleDiv.get(0).innerHTML = "Introduction";
+            }
+        };
+    </script>
+</body>
+
+</html>
