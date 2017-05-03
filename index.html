@@ -2,182 +2,277 @@
 
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-</head>
 
-<style>
-    html {
-        width: 100%;
-        overflow-x: hidden;
-        background-color: aliceblue;
-    }
-    
-    body {
-        padding: 0px;
-        margin: 0px;
-    }
-    
-    @font-face {
-        font-family: DeathKnell;
-        src: url('Death Knell.otf');
-    }
-    
-    h1 {
-        font-family: DeathKnell;
-        font-size: 13rem;
-    }
-    
-    #header {
-        background-image: url("img/miami80sBG2.jpg");
-        background-size: contain;
-        background-attachment: fixed;
-        background-repeat: no-repeat;
-        width: 100%;
-        height: 20em;
-        max-height: 252px;
-    }
-    
-    #container {
-        position: relative;
-        height: 100%;
-    }
-    
-    #center-img {
-        left: 30%;
-        top: 50%;
-        position: absolute;
-        z-index: 10;
-        background-image: url("img/crockett_indiv.png");
-        background-position: center;
-        background-size: contain;
-        background-repeat: no-repeat;
-        width: 100em;
-        height: 200em;
-        shape-outside: url('img/crockett_indiv.png');
-        shape-image-threshold: 0.5;
-        float: left;
-    }
-    
-    #horizDiv {
-        width: 100%;
-        height: 20em;
-        z-index: 4;
-        position: fixed;
-        background-color: pink;
-    }
-    
-    #horizDiv h1 {
-        margin: 0px;
-        transition: all .5s ease;
-        transform: translateX(-100%);
-    }
-    
-    .slide-in {
-        transform: translateX(0%);
-        -webkit-transform: translateX(0%);
-    }
-    
-    .slide-out {
-        transform: translateX(100%);
-        -webkit-transform: translateX(100%);
-    }
-    
-    @keyframes slide {
-        0% {
-            transform: translateX(-100%);
-            -webkit-transform: translateX(-100%);
+
+    <style>
+        html {
+            width: 100%;
+            height: 100vh;
+            overflow-x: hidden;
+            background-color: lightblue;
+            padding: 0px;
+            margin: 0px;
+        }  
+
+        body{            
+            min-width: 100vh;
+            min-height: 100vh;
+            padding: 0px;
+            margin: 0px;
         }
-        100% {
+      
+        
+        @font-face {
+            font-family: DeathKnell;
+            src: url('Death Knell.otf');
+        }
+        
+        h1, h2 {
+            font-family: DeathKnell;
+        }
+
+        h1 {
+            font-size: 12em;
+        }
+
+        h2 {
+            font-size: 6rem;
+        }
+        
+        #header {
+            background-image: url("img/miami80sBG2.jpg");
+            background-size: contain;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            min-width: 100%;
+            height: 20em;
+            max-height: 252px;
+        }
+        
+        #container {
+            height: 100%;
+            width: 100%;
+        }
+        
+        #center-img {
+            left: 20%;
+            top: 40%;
+            position: absolute;
+            z-index: 10;
+            background-image: url("img/crockett_indiv.png");
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+            width: 120em;
+            height: 220em;
+            shape-outside: url('img/crockett_indiv.png');
+            shape-image-threshold: 0.5;
+            float: left;
+        }
+        
+        #horizDiv {
+            width: 100%;
+            height: 16em;
+            z-index: 4;
+            position: fixed;
+            background-color: pink;
+        }
+        
+        #horizDiv h1 {
+            margin: 0px;
+            transition: all .5s ease-in-out;
+            transform: translateX(-100%);
+        }
+
+        
+        .slide-in {
             transform: translateX(0%);
             -webkit-transform: translateX(0%);
         }
-    }
-    
-    .slide-animate {
-        animation: slide 1s;
-    }
-    
-    .bodySection {
-        width: 100%;
-        position: relative;
-        min-height: 70em;
-    }
-    
-    #bodyContainer {
-        position: absolute;
-        margin-top: 35em;
-        width: 50%;
-        margin-left: 15px;
-    }
-</style>
+        
+        .slide-out {
+            transform: translateX(100%);
+            -webkit-transform: translateX(100%);
+        }
+        
+        @keyframes slide {
+            to {
+                transform: translateX(0%);
+                -webkit-transform: translateX(0%);
+            }
+        }
+        
+        .slide-animate {
+            animation: slide 1s;
+        }
+        
+        .bodySection {
+            width: 100%;
+            position: relative;
+            min-height: 100vh;
+            /*min-height: 80em;*/
+            font-size: 1em;
+        }
+        
+        #bodyContainer {
+            position: absolute;
+            margin-top: 20em;
+            width: 50%;
+            margin-left: 15px;
+        }
+        
+        #nav {
+            background: lightcoral;
+            list-style: none;
+            padding: 0;
+            z-index: 35;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 31em;
+        }
+        
+        #nav li {
+            font-family: DeathKnell;
+            font-size: 4em;
+            color: white;
+            margin: 0 auto;
+            position: relative;
+            padding-left: 1em;
+            padding-right: 1em;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        #nav li:hover{
+            color: lightgray;
+        }
+    </style>
+</head>
 
 <body>
+    <div id="header"></div>
     <div id="container">
-        <div id="header"></div>
-
+        
+        <ul id="nav">
+            <li>Introduction</li>
+            <li>About</li>
+            <li>Contact</li>
+            <li>Skills</li>
+        </ul>
         <div id="center-img"></div>
         <div id="horizDiv">
             <h1>Introduction</h1>
         </div>
 
         <div id="bodyContainer">
-            <div class="bodySection" id="About Me">
-                About
-                <br> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque non dui dolor. Vestibulum vitae
+            <div class="bodySection" id="Introduction"></div>
+            <div class="bodySection" id="About">
+                <b>About</b>
+                <br> 
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque non dui dolor. Vestibulum vitae
                 rhoncus purus, vitae rhoncus diam. Nulla id elit eu nulla faucibus pharetra ac vulputate nunc. Vestibulum
                 in gravida justo. Proin id auctor purus. In at ante libero. Fusce faucibus, mauris congue ornare blandit,
-                erat magna pulvinar elit, sit amet auctor lorem ligula in nisl. In sed consequat mauris, in maximus turpis.
+                erat magna pulvinar elit, sit amet auctor lorem ligula in nisl. In sed consequat mauris, in maximus turpis.</p>
             </div>
             <div class="bodySection" id="Contact">
-                Contact
-                <br> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque non dui dolor. Vestibulum vitae
+                <b>Contact</b>
+                <br> 
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque non dui dolor. Vestibulum vitae
                 rhoncus purus, vitae rhoncus diam. Nulla id elit eu nulla faucibus pharetra ac vulputate nunc. Vestibulum
                 in gravida justo. Proin id auctor purus. In at ante libero. Fusce faucibus, mauris congue ornare blandit,
-                erat magna pulvinar elit, sit amet auctor lorem ligula in nisl. In sed consequat mauris, in maximus turpis.
+                erat magna pulvinar elit, sit amet auctor lorem ligula in nisl. In sed consequat mauris, in maximus turpis.</p>
             </div>
             <div class="bodySection" id="Skills">
-                Skills
-                <br> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque non dui dolor. Vestibulum vitae
+                <b>Skills</b>
+                <br> 
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque non dui dolor. Vestibulum vitae
                 rhoncus purus, vitae rhoncus diam. Nulla id elit eu nulla faucibus pharetra ac vulputate nunc. Vestibulum
                 in gravida justo. Proin id auctor purus. In at ante libero. Fusce faucibus, mauris congue ornare blandit,
-                erat magna pulvinar elit, sit amet auctor lorem ligula in nisl. In sed consequat mauris, in maximus turpis.
+                erat magna pulvinar elit, sit amet auctor lorem ligula in nisl. In sed consequat mauris, in maximus turpis.</p>
             </div>
         </div>
     </div>
 
     <script>
         var scrollY = window.scrollY;
-        console.log(scrollY)
         $titleDiv = $('#horizDiv').children('h1');
         $bodySections = $('#bodyContainer').children('div');
-        $($titleDiv.get(0)).css({
-            'transform': 'translateX(0%)'
-        });
-        console.log($titleDiv.get(0).innerHTML);
 
-        var currSection = $titleDiv.get(0).id;
+
+        $($titleDiv.get(0)).css({
+            'transform': 'translateX(-100%)'
+        });
+
+        setTimeout(function () {
+
+            $($titleDiv.get(0)).css(
+                'transform', 'translateX(0%)'
+            );
+        }, 500);
+
+        for(var i = 0; i < $bodySections.length; i++){
+            //$($bodySections.get(i)).height('%', 1 / $bodySections.length * 100)
+            //$($bodySections.get(i)).css('height',  (1 / $bodySections.length * 200) + 10 +'em');
+        }
+
+        $currSection = $titleDiv.get(0).innerHTML;
+
+        $("#nav").children('li').click(function (e) {
+            //console.log(e.target.innerHTML);
+            target = '#' + e.target.innerHTML;
+            //console.log(target);
+
+            if (e.target.innerHTML != 'Introduction') {
+                $('html, body').animate({
+                    scrollTop: $("#" + e.target.innerHTML + "").offset().top - 50
+                }, 1000);
+            } else {
+                $('html, body').animate({
+                    scrollTop: 0
+                }, 1000);
+            }
+        });
+
+        var scrollTimer = -1;
 
         window.onscroll = function () {
 
             scrollY = document.body.scrollTop;
-
+            //console.log(scrollY)
             for (var i = 0; i < $bodySections.length; i++) {
                 section = $($bodySections[i]).get(0).id;
-                if (scrollY > $($bodySections[i]).position().top + 500) {
-                    if (currSection != section) {
-                        $titleDiv.get(0).innerHTML = $bodySections.get(i).id;
-                        $($titleDiv.get(0)).addClass('slide-animate');
-                        setTimeout(2000);
-                        $($titleDiv.get(0)).removeClass('slide-animate');
-                        $($titleDiv.get(0)).css({
-                            'transform': 'initial'
-                        });
-                    }
+                if (scrollY > $($bodySections[i]).position().top + 300) {
+
+                    $titleDiv.get(0).innerHTML = $bodySections.get(i).id;
+                    $currSection = section;
+
                 }
+
+                if (scrollTimer != -1)
+                    clearTimeout(scrollTimer);
+
+                //scrollTimer = window.setTimeout("scrollFinished()", 500);
+
             }
-            if (scrollY < 500) {
+            if (scrollY < 800) {
                 $titleDiv.get(0).innerHTML = "Introduction";
             }
         };
+
+        function scrollFinished() {
+
+            $($titleDiv.get(0)).css({
+                'transform': 'translateX(-100%)'
+            });
+
+            setTimeout(function () {
+
+                $($titleDiv.get(0)).css({
+                    'transform': 'translateX(0%)'
+                });
+            }, 500);
+        }
     </script>
 </body>
 
